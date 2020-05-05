@@ -49,3 +49,5 @@ print(waypoints)
 
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+for val in waypoints:
+    print(val.values())

@@ -5,12 +5,13 @@
 x = 12
 
 def change_x():
+    global x
     x = 99
 
 # This prints 12. What do we have to modify in change_x() to get it to print 99?
-    print(x)
-change_x() #had to move function call after new x value was printed. when called before, still prints old global value
 
+change_x()
+print(x)
 # This nested function has a similar problem.
 def outer():
     y = 120

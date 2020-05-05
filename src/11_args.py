@@ -16,7 +16,7 @@ print(f1(1, 2))
 # YOUR CODE HERE
 def f2(*numbers):
     if len(numbers) == 1 and type(numbers[0]) is list:
-        numbers = numbers[0]   #to make a list work. check for arg exist and type, then reassign as list
+        numbers = numbers[0]   #to make 'a' work below. check for single arg and if arg type is list, set index for single arg
 
     sum = 0
     for num in numbers:
@@ -40,9 +40,15 @@ print(f2(a))    # Should print 22
 # Note: Google "python default arguments" for a hint.
 
 # YOUR CODE HERE
+def f3(arg1, *arg2):
+    if len(arg2) == 0:  #check condition if only arg1 is present and return arg1 val + 1
+        return arg1 + 1
+    else:  #if arg 1 and arg2 present, sum
+        return arg1 + arg2[0]
 
-#print(f3(1, 2))  # Should print 3
-#print(f3(8))     # Should print 9
+
+print(f3(1, 2))  # Should print 3
+print(f3(8))     # Should print 9
 
 
 # Write a function f4 that accepts an arbitrary number of keyword arguments and
@@ -54,17 +60,24 @@ print(f2(a))    # Should print 22
 # Note: Google "python keyword arguments".
 
 # YOUR CODE HERE
+def f4(*regarg, **keyarg):
+    if len(regarg) == 1 and type(regarg[0]) is dict: #same check as aboev fort list. check len & type, get 1st index arg, item from index to loop
+        keyvals = regarg[0].items()
+    else:
+        keyvals = keyarg.items()
 
+    for key, value in keyvals:
+        print(f'key: {key}, value: {value}')    
 # Should print
 # key: a, value: 12
 # key: b, value: 30
-#f4(a=12, b=30)
+f4(a=12, b=30)
 
 # Should print
 # key: city, value: Berkeley
 # key: population, value: 121240
 # key: founded, value: "March 23, 1868"
-#f4(city="Berkeley", population=121240, founded="March 23, 1868")
+f4(city="Berkeley", population=121240, founded="March 23, 1868")
 
 d = {
     "monster": "goblin",
@@ -72,4 +85,4 @@ d = {
 }
 
 # How do you have to modify the f4 call below to make this work?
-#f4(d)
+f4(d)
